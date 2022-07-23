@@ -1,8 +1,8 @@
-//Base
+//* Base
 import * as React from "react";
 import { isMobile } from "react-device-detect";
 
-//MUI
+//* MUI
 import {
   AppBar,
   Box,
@@ -19,7 +19,7 @@ import {
 import { styled } from "@mui/material/styles";
 import Image from "mui-image";
 
-//Icons
+//* Icons
 import {
   Menu,
   Home,
@@ -30,11 +30,11 @@ import {
   ChevronRight,
 } from "@mui/icons-material";
 
-//Images
+//* Images
 const companyLogo =
   "https://allconcontracting.com/image-resizing?&quality=100&height=1920&width=1080&metadata=none&image=https://allconcontracting.com:2096/files/getFile/Logos/logo-new.png";
 
-//Styled Components
+//* Styled Components
 const StyledTabs = styled((props) => (
   <Tabs
     {...props}
@@ -65,7 +65,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-start",
 }));
 
-//Scroll
+//* Utility Functions
 const HideOnScroll = ({ children }) => {
   const trigger = useScrollTrigger({
     // target: document.getElementById("contentContainer"),
@@ -85,14 +85,16 @@ const HideOnScroll = ({ children }) => {
   }
 };
 
+//* Main
 export default function Navbar() {
+  //* Local State
   const [activeTab, setActiveTab] = React.useState(0);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
 
+  //* Handlers
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
   };
-
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
 
   const toggleDrawer = () => (event) => {
     if (

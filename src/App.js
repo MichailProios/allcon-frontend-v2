@@ -1,18 +1,18 @@
-//Basic dependencies
+//* Base
 import React from "react";
 
-//Components
-import Navbar from "components/Navbar/Navbar.jsx";
-
-//Styling
-import "./App.css";
-import { CssBaseline, Box } from "@mui/material";
-
+//* MUI
+import { CssBaseline } from "@mui/material";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 
-import loadable from "react-loadable";
+//* Components
+import Navbar from "components/Navbar/Navbar.jsx";
 import AppRouter from "utilities/Routes/AppRouter.jsx";
 
+//* Styling
+import "./App.css";
+
+//* Theme
 const theme = createTheme({
   palette: {
     primary: {
@@ -36,6 +36,7 @@ const theme = createTheme({
   },
 });
 
+//* Styled Components
 const StyledDiv = styled("div")(({ theme }) => ({
   "@global": {
     "*": {
@@ -71,35 +72,8 @@ const StyledDiv = styled("div")(({ theme }) => ({
   },
 }));
 
-export const siteMap = {
-  Home: {
-    title: "Home",
-    path: "/Home",
-    description: "Allcon Home",
-  },
-  About: {
-    title: "About",
-    path: "/About",
-    description: "Allcon About Us",
-  },
-  Projects: {
-    title: "Projects",
-    path: "/Projects",
-    description: "Allcon Projects",
-  },
-  Testimonies: {
-    title: "Testimonies",
-    path: "/Testimonies",
-    description: "Allcon Testimonies",
-  },
-  Contacts: {
-    title: "Contacts",
-    path: "/Contacts",
-    description: "Allcon Contacts",
-  },
-};
-
-function App() {
+//* Main
+export default function App() {
   return (
     <StyledDiv>
       <ThemeProvider theme={theme}>
@@ -110,5 +84,3 @@ function App() {
     </StyledDiv>
   );
 }
-
-export default App;
