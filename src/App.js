@@ -1,12 +1,12 @@
 //* Base
 import React from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 //* MUI
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 
 //* Components
-import Navbar from "components/Navbar/Navbar.jsx";
 import AppRouter from "utilities/Routes/AppRouter.jsx";
 
 //* Styling
@@ -72,15 +72,28 @@ const StyledDiv = styled("div")(({ theme }) => ({
   },
 }));
 
+//! TEMPORARY
+function ErrorFallback({ error, resetErrorBoundary }) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try again</button>
+    </div>
+  );
+}
+
 //* Main
 export default function App() {
   return (
-    <StyledDiv>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Navbar />
-        <AppRouter />
-      </ThemeProvider>
-    </StyledDiv>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <StyledDiv>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+
+          <AppRouter />
+        </ThemeProvider>
+      </StyledDiv>
+    </ErrorBoundary>
   );
 }

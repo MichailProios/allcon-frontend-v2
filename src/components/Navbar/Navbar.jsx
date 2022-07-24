@@ -1,6 +1,7 @@
 //* Base
 import * as React from "react";
 import { isMobile } from "react-device-detect";
+import { Link, useLocation } from "react-router-dom";
 
 //* MUI
 import {
@@ -90,6 +91,41 @@ export default function Navbar() {
   //* Local State
   const [activeTab, setActiveTab] = React.useState(0);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const location = useLocation();
+
+  //* Set tabs on load
+  React.useEffect(() => {
+    const pathnames = location.pathname.toLowerCase();
+
+    switch (true) {
+      case pathnames === "/":
+        setActiveTab(0);
+
+        break;
+      case pathnames.startsWith("/home"):
+        setActiveTab(0);
+
+        break;
+      case pathnames.startsWith("/about"):
+        setActiveTab(1);
+
+        break;
+      case pathnames.startsWith("/projects"):
+        setActiveTab(2);
+
+        break;
+      case pathnames.startsWith("/testimonies"):
+        setActiveTab(3);
+
+        break;
+      case pathnames.startsWith("/contacts"):
+        setActiveTab(4);
+
+        break;
+      default:
+        break;
+    }
+  }, [location]);
 
   //* Handlers
   const handleTabChange = (event, newValue) => {
@@ -109,90 +145,230 @@ export default function Navbar() {
 
   return (
     <HideOnScroll>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar
-          position="static"
+      <AppBar
+        position="sticky"
+        sx={{
+          backgroundColor: "#fff",
+          minHeight: "64px",
+          height: "64px",
+          userSelect: "none",
+          userDrag: "none",
+          textDecoration: "none",
+        }}
+      >
+        <Toolbar
           sx={{
-            backgroundColor: "#fff",
+            justifyContent: "space-between",
+            alignItems: "center",
             minHeight: "64px",
             height: "64px",
-            userSelect: "none",
           }}
         >
-          <Toolbar
+          <Box
             sx={{
-              justifyContent: "space-between",
+              display: "flex",
+              justifyContent: "center",
               alignItems: "center",
-              minHeight: "64px",
-              height: "64px",
+              gap: "0.1em",
+              paddingLeft: {
+                md: 0,
+                lg: "5em",
+              },
             }}
           >
-            <Box
+            <Image
+              src={companyLogo}
+              draggable="false"
+              shift="top"
+              distance="2rem"
+              duration={2000}
+              shiftDuration={300}
+              height="auto"
+              width="3.2em"
+              sx={{ userSelect: "none" }}
+            />
+            <Typography
               sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "0.1em",
-                paddingLeft: {
-                  md: 0,
-                  lg: "5em",
-                },
+                textDecoration: "none",
+                userSelect: "none",
+                userDrag: "none",
+                color: "black",
+                letterSpacing: ".1rem",
+                fontSize: "1.1em",
+                fontSmooth: "5em",
+                fontFamily: "EB Garamond , serif !important",
               }}
             >
-              <Image
-                src={companyLogo}
-                draggable="false"
-                showLoading
-                shift="top"
-                distance="2rem"
-                duration={2000}
-                shiftDuration={300}
-                height="auto"
-                width="3.2em"
-                sx={{ userSelect: "none" }}
-              />
-              <Typography
-                sx={{
-                  textDecoration: "none",
-                  userSelect: "none",
-                  userDrag: "none",
-                  color: "black",
-                  letterSpacing: ".1rem",
-                }}
-              >
-                ALL•CON
-              </Typography>
-              &nbsp;
-              <Typography
-                sx={{
-                  textDecoration: "none",
-                  userSelect: "none",
-                  userDrag: "none",
-                  color: "black",
-                  letterSpacing: ".1rem",
+              ALL•CON
+            </Typography>
+            &nbsp;
+            <Typography
+              sx={{
+                textDecoration: "none",
+                userSelect: "none",
+                userDrag: "none",
+                color: "black",
+                letterSpacing: ".1rem",
+                fontSmooth: "5em",
+                fontSize: "1.1em",
+                fontFamily: "EB Garamond , serif !important",
 
-                  display: { xs: "none", md: "flex" },
-                }}
-              >
-                Contracting
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: {
-                  xs: "none",
-                  sm: "none",
-                  lg: "flex",
-                },
-                paddingRight: {
-                  md: 0,
-                  lg: "5em",
-                },
-                alignItems: "center",
+                display: { xs: "none", md: "flex" },
               }}
             >
-              <Tabs value={activeTab} onChange={handleTabChange}>
-                <StyledTabHorizontal
+              Contracting
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              visibility: {
+                xs: "hidden",
+                sm: "hidden",
+                lg: "visible",
+              },
+              width: {
+                xs: 0,
+                sm: 0,
+                lg: "auto",
+              },
+              height: {
+                xs: 0,
+                sm: 0,
+                lg: "auto",
+              },
+              paddingRight: {
+                md: 0,
+                lg: "5em",
+              },
+              alignItems: "center",
+            }}
+          >
+            <Tabs value={activeTab} onChange={handleTabChange}>
+              <StyledTabHorizontal
+                component={Link}
+                draggable="false"
+                to="/Home"
+                label={
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "0.5em",
+                    }}
+                  >
+                    <Home />
+                    Home
+                  </Box>
+                }
+              />
+              <StyledTabHorizontal
+                component={Link}
+                draggable="false"
+                to="/About"
+                label={
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "0.5em",
+                    }}
+                  >
+                    <Feed />
+                    About
+                  </Box>
+                }
+              />
+
+              <StyledTabHorizontal
+                component={Link}
+                draggable="false"
+                to="/Projects"
+                label={
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "0.5em",
+                    }}
+                  >
+                    <MapsHomeWork />
+                    Projects
+                  </Box>
+                }
+              />
+              <StyledTabHorizontal
+                component={Link}
+                draggable="false"
+                to="/Resources"
+                label={
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "0.5em",
+                    }}
+                  >
+                    <LibraryBooks />
+                    Resources
+                  </Box>
+                }
+              />
+
+              <StyledTabHorizontal
+                component={Link}
+                draggable="false"
+                to="/Contacts"
+                label={
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "0.5em",
+                    }}
+                  >
+                    <Contacts />
+                    Contacts
+                  </Box>
+                }
+              />
+            </Tabs>
+          </Box>
+
+          <IconButton
+            size="large"
+            edge="start"
+            onClick={toggleDrawer()}
+            sx={{ display: { lg: "none" } }}
+          >
+            <Menu />
+          </IconButton>
+
+          <Drawer anchor={"right"} open={drawerOpen} onClose={toggleDrawer()}>
+            <Box
+              sx={{ width: "250px" }}
+              onClick={toggleDrawer()}
+              onKeyDown={toggleDrawer()}
+            >
+              <DrawerHeader>
+                <IconButton onClick={toggleDrawer()}>
+                  <ChevronRight />
+                </IconButton>
+              </DrawerHeader>
+              <Divider />
+              <StyledTabs
+                orientation="vertical"
+                value={activeTab}
+                onChange={handleTabChange}
+              >
+                <StyledTabVertical
+                  component={Link}
+                  draggable="false"
+                  to="/Home"
                   label={
                     <Box
                       sx={{
@@ -207,7 +383,10 @@ export default function Navbar() {
                     </Box>
                   }
                 />
-                <StyledTabHorizontal
+                <StyledTabVertical
+                  component={Link}
+                  draggable="false"
+                  to="/About"
                   label={
                     <Box
                       sx={{
@@ -223,7 +402,10 @@ export default function Navbar() {
                   }
                 />
 
-                <StyledTabHorizontal
+                <StyledTabVertical
+                  component={Link}
+                  draggable="false"
+                  to="/Projects"
                   label={
                     <Box
                       sx={{
@@ -238,7 +420,10 @@ export default function Navbar() {
                     </Box>
                   }
                 />
-                <StyledTabHorizontal
+                <StyledTabVertical
+                  component={Link}
+                  draggable="false"
+                  to="/Resources"
                   label={
                     <Box
                       sx={{
@@ -253,7 +438,10 @@ export default function Navbar() {
                     </Box>
                   }
                 />
-                <StyledTabHorizontal
+                <StyledTabVertical
+                  component={Link}
+                  draggable="false"
+                  to="/Contacts"
                   label={
                     <Box
                       sx={{
@@ -268,119 +456,11 @@ export default function Navbar() {
                     </Box>
                   }
                 />
-              </Tabs>
+              </StyledTabs>
             </Box>
-
-            <IconButton
-              size="large"
-              edge="start"
-              onClick={toggleDrawer()}
-              sx={{ display: { lg: "none" } }}
-            >
-              <Menu />
-            </IconButton>
-
-            <Drawer anchor={"right"} open={drawerOpen} onClose={toggleDrawer()}>
-              <Box
-                sx={{ width: "250px" }}
-                onClick={toggleDrawer()}
-                onKeyDown={toggleDrawer()}
-              >
-                <DrawerHeader>
-                  <IconButton onClick={toggleDrawer()}>
-                    <ChevronRight />
-                  </IconButton>
-                </DrawerHeader>
-                <Divider />
-                <StyledTabs
-                  orientation="vertical"
-                  variant="fullWidth"
-                  centered
-                  value={activeTab}
-                  onChange={handleTabChange}
-                >
-                  <StyledTabVertical
-                    label={
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "0.5em",
-                        }}
-                      >
-                        <Home />
-                        Home
-                      </Box>
-                    }
-                  />
-                  <StyledTabVertical
-                    label={
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "0.5em",
-                        }}
-                      >
-                        <Feed />
-                        About
-                      </Box>
-                    }
-                  />
-
-                  <StyledTabVertical
-                    label={
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "0.5em",
-                        }}
-                      >
-                        <MapsHomeWork />
-                        Projects
-                      </Box>
-                    }
-                  />
-                  <StyledTabVertical
-                    label={
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "0.5em",
-                        }}
-                      >
-                        <LibraryBooks />
-                        Resources
-                      </Box>
-                    }
-                  />
-                  <StyledTabVertical
-                    label={
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "0.5em",
-                        }}
-                      >
-                        <Contacts />
-                        Contacts
-                      </Box>
-                    }
-                  />
-                </StyledTabs>
-              </Box>
-            </Drawer>
-          </Toolbar>
-        </AppBar>
-      </Box>
+          </Drawer>
+        </Toolbar>
+      </AppBar>
     </HideOnScroll>
   );
 }
