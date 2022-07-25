@@ -65,7 +65,7 @@ export default function AppRouter() {
 
   return (
     <Router>
-      <Navbar perfectScrollbarRef />
+      <Navbar />
 
       {!isMobile ? (
         <Box

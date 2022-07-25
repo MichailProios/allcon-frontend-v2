@@ -50,8 +50,6 @@ const greatneckRoofs =
 
 //* Styled Components
 const StyledImage = styled(Image)(({ theme }) => ({
-  objectFit: "cover",
-  width: "100%",
   userDrag: "none",
   userSelect: "none",
   pointerEvents: "none",
@@ -79,8 +77,6 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   textAlign: "center",
   userSelect: "none",
   userDrag: "none",
-
-  color: "#fff",
   textTransform: "uppercase",
   letterSpacing: "0.04em",
   fontSize: "2.3em",
@@ -125,7 +121,7 @@ export default function Home() {
     },
   };
 
-  if (!loading) {
+  if (loading) {
     return (
       <Box sx={{ position: "relative" }}>
         <Swiper
@@ -142,27 +138,66 @@ export default function Home() {
           allowTouchMove={false}
           style={{
             height: `calc(${height}px - 65px)`,
+
             "--swiper-navigation-color": "#008B8B",
             "--swiper-pagination-color": "#008B8B",
           }}
         >
           <SwiperSlide draggable="false" style={{}}>
-            <StyledImage draggable="false" duration={350} src={lupton} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <StyledImage draggable="false" duration={150} src={elwood} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <StyledImage draggable="false" duration={150} src={policeStation} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <StyledImage draggable="false" duration={150} src={nold} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <StyledImage draggable="false" duration={150} src={apt724} />
+            <StyledImage
+              fit="cover"
+              width="100%"
+              height={`calc(${height}px - 65px)`}
+              draggable="false"
+              duration={350}
+              src={lupton}
+            />
           </SwiperSlide>
           <SwiperSlide>
             <StyledImage
+              fit="cover"
+              width="100%"
+              height={`calc(${height}px - 65px)`}
+              draggable="false"
+              duration={150}
+              src={elwood}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <StyledImage
+              fit="cover"
+              width="100%"
+              height={`calc(${height}px - 65px)`}
+              draggable="false"
+              duration={150}
+              src={policeStation}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <StyledImage
+              fit="cover"
+              width="100%"
+              height={`calc(${height}px - 65px)`}
+              draggable="false"
+              duration={150}
+              src={nold}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <StyledImage
+              fit="cover"
+              width="100%"
+              height={`calc(${height}px - 65px)`}
+              draggable="false"
+              duration={150}
+              src={apt724}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <StyledImage
+              fit="cover"
+              width="100%"
+              height={`calc(${height}px - 65px)`}
               draggable="false"
               duration={150}
               src={greatneckRoofs}

@@ -47,8 +47,9 @@ export default function LoadingSpinnerText() {
           options={defaultOptions}
           resizeMode="cover"
           animationPosition="center"
-          height={150}
-          width={150}
+          height={140}
+          width={140}
+          speed={1.4}
           isClickToPauseDisabled
         />
       </Box>

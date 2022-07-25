@@ -149,8 +149,8 @@ export default function Navbar() {
         position="sticky"
         sx={{
           backgroundColor: "#fff",
-          minHeight: "64px",
-          height: "64px",
+          minHeight: "65px",
+          height: "65px",
           userSelect: "none",
           userDrag: "none",
           textDecoration: "none",
@@ -160,8 +160,8 @@ export default function Navbar() {
           sx={{
             justifyContent: "space-between",
             alignItems: "center",
-            minHeight: "64px",
-            height: "64px",
+            minHeight: "65px",
+            height: "65px",
           }}
         >
           <Box

@@ -3,8 +3,10 @@ import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
 //* MUI
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, AppBar, Toolbar, Typography } from "@mui/material";
 import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
+
+import { withStyles } from "@mui/styles";
 
 //* Components
 import AppRouter from "utilities/Routes/AppRouter.jsx";
@@ -33,11 +35,14 @@ const theme = createTheme({
       main: "#f44336",
       secondary: "#c2160a",
     },
+
+    MuiPaper: {
+      styleOverrides: { root: { backgroundImage: "unset" } },
+    },
   },
 });
 
-//* Styled Components
-const StyledDiv = styled("div")(({ theme }) => ({
+const GlobalCss = withStyles({
   "@global": {
     "*": {
       scrollbarWidth: "thin",
@@ -70,7 +75,7 @@ const StyledDiv = styled("div")(({ theme }) => ({
       },
     },
   },
-}));
+})(() => null);
 
 //! TEMPORARY
 function ErrorFallback({ error, resetErrorBoundary }) {
@@ -87,13 +92,11 @@ function ErrorFallback({ error, resetErrorBoundary }) {
 export default function App() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <StyledDiv>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-
-          <AppRouter />
-        </ThemeProvider>
-      </StyledDiv>
+      <CssBaseline />
+      <GlobalCss />
+      <ThemeProvider theme={theme}>
+        <AppRouter />
+      </ThemeProvider>
     </ErrorBoundary>
   );
 }
