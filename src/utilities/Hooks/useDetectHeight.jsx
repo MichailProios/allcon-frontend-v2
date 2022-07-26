@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 
 export default function useDetectHeight() {
   const getWindowWidth = () => window.innerHeight;
@@ -17,5 +18,9 @@ export default function useDetectHeight() {
     //eslint-disable-next-line
   }, []);
 
-  return height;
+  if (!isMobile) {
+    return height;
+  } else {
+    return window.screen.height - 150;
+  }
 }

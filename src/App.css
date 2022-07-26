@@ -3,7 +3,6 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900);
 
 html {
-  background-color: #f3f3f3;
   overflow: overlay;
   scroll-behavior: smooth;
 }
@@ -13,4 +12,24 @@ html {
   margin: 0;
   padding: 0;
   font-family: "Lato", sans-serif !important;
+}
+.custom-shape-divider-bottom-1658723164 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 800;
+}
+
+.custom-shape-divider-bottom-1658723164 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 30px;
+}
+
+.custom-shape-divider-bottom-1658723164 .shape-fill {
+  fill: #ffffff;
 }

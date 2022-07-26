@@ -71,7 +71,8 @@ export default function AppRouter() {
         <Box
           sx={{
             height: `calc(${height}px - 65px)`,
-            maxHeight: "100%",
+            maxHeight: `calc(${height}px - 65px)`,
+            minHeight: `calc(${height}px - 65px)`,
             overflow: "overlay",
             scrollBehavior: "smooth",
           }}

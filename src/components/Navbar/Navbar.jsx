@@ -30,6 +30,7 @@ import {
   Feed,
   ChevronRight,
 } from "@mui/icons-material";
+import { Apartment } from "@mui/icons-material";
 
 //* Images
 const companyLogo =
@@ -294,7 +295,7 @@ export default function Navbar() {
                       gap: "0.5em",
                     }}
                   >
-                    <MapsHomeWork />
+                    <Apartment />
                     Projects
                   </Box>
                 }
@@ -415,7 +416,7 @@ export default function Navbar() {
                         gap: "0.5em",
                       }}
                     >
-                      <MapsHomeWork />
+                      <Apartment />
                       Projects
                     </Box>
                   }
